@@ -7,6 +7,7 @@ import { FiSearch } from "react-icons/fi";
 
 //components
 import ListingSideBar from "../../components/sidebars/listings";
+import SearchedFiltering from "../../components/filters/searched";
 import SearchedListingsContainer from "../../components/listings/searched/container";
 
 const SearchedListings = () => {
@@ -24,6 +25,7 @@ const SearchedListings = () => {
             <FiSearch className="icon" />
             <input type="text" placeholder="Search here..." />
           </div>
+          <SearchedFiltering />
         </div>
         <SearchedListingsContainer listings={listings} />
       </div>
@@ -53,7 +55,7 @@ const Container = styled.div`
 
     .top {
       width: 100%;
-      height: 150px;
+      height: auto;
       padding: 10px 0;
       display: flex;
       flex-direction: column;
@@ -75,7 +77,7 @@ const Container = styled.div`
         padding: 0 10px;
         align-items: center;
         justify-content: space-around;
-        margin: 20px 0;
+        margin: 30px 0;
         background: var(--white);
 
         input {
