@@ -7,6 +7,7 @@ import { FiSearch } from "react-icons/fi";
 
 //components
 import HistorySideBar from "../components/sidebars/history";
+import HistoryFiltering from "../components/filters/history";
 import HistoryListingsContainer from "../components/listings/history/container";
 
 const History = () => {
@@ -25,6 +26,7 @@ const History = () => {
             <input type="text" placeholder="Search here..." />
           </div>
         </div>
+        <HistoryFiltering />
         <HistoryListingsContainer listings={listings} />
       </div>
     </Container>

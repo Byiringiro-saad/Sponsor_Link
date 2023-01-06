@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 //icons
 import { BsBellFill } from "react-icons/bs";
@@ -12,8 +12,14 @@ import Top from "./top";
 const Nav = () => {
   //configs
   const location = useLocation();
+  const navigate = useNavigate();
+
   //local data
   const [active, setActive] = React.useState("");
+
+  const goToNotifications = () => {
+    navigate("/notifications");
+  };
 
   useEffect(() => {
     setActive(location.pathname);
@@ -43,15 +49,17 @@ const Nav = () => {
             History <BiChevronDown className="big" />
           </Link>
           <Link
-            to="/settings"
+            to="/settings/profile"
             className={active.includes("settings") ? "active" : ""}
           >
             Settings
           </Link>
         </div>
         <div className="icons">
-          <div className="one">
-            <BsBellFill className="icon" />
+          <div onClick={goToNotifications} className="one">
+            <BsBellFill
+              className={active === "/notifications" ? "icon active" : "icon"}
+            />
           </div>
           <div className="two">
             <div className="one"></div>
@@ -120,6 +128,7 @@ const Container = styled.div`
 
       > div {
         margin: 0 0 0 15px;
+        cursor: pointer;
       }
 
       .one {
@@ -130,6 +139,10 @@ const Container = styled.div`
         justify-content: center;
         border-radius: 50%;
         background: var(--white);
+
+        .active {
+          color: var(--bright);
+        }
       }
 
       .two {
