@@ -16,6 +16,7 @@ const Nav = () => {
 
   //local data
   const [active, setActive] = React.useState("");
+  const [authenticated, setAuthenticated] = React.useState(false);
 
   const goToNotifications = () => {
     navigate("/notifications");
@@ -27,46 +28,89 @@ const Nav = () => {
 
   return (
     <Container>
-      <Top />
-      <div className="nav">
-        <div className="links">
-          <Link
-            to="/explore"
-            className={active.includes("explore") ? "active" : ""}
-          >
-            Explore
-          </Link>
-          <Link
-            to="/listings/active"
-            className={active.includes("listings") ? "active" : ""}
-          >
-            manage listings <BiChevronDown className="big" />
-          </Link>
-          <Link
-            to="/history"
-            className={active.includes("history") ? "active" : ""}
-          >
-            History <BiChevronDown className="big" />
-          </Link>
-          <Link
-            to="/settings/profile"
-            className={active.includes("settings") ? "active" : ""}
-          >
-            Settings
-          </Link>
-        </div>
-        <div className="icons">
-          <div onClick={goToNotifications} className="one">
-            <BsBellFill
-              className={active === "/notifications" ? "icon active" : "icon"}
-            />
+      {authenticated ? (
+        <>
+          <Top />
+          <div className="nav">
+            <div className="links">
+              <Link
+                to="/explore"
+                className={active.includes("explore") ? "active" : ""}
+              >
+                Explore
+              </Link>
+              <Link
+                to="/listings/active"
+                className={active.includes("listings") ? "active" : ""}
+              >
+                manage listings <BiChevronDown className="big" />
+              </Link>
+              <Link
+                to="/history"
+                className={active.includes("history") ? "active" : ""}
+              >
+                History <BiChevronDown className="big" />
+              </Link>
+              <Link
+                to="/settings/profile"
+                className={active.includes("settings") ? "active" : ""}
+              >
+                Settings
+              </Link>
+            </div>
+            <div className="icons">
+              <div onClick={goToNotifications} className="one">
+                <BsBellFill
+                  className={
+                    active === "/notifications" ? "icon active" : "icon"
+                  }
+                />
+              </div>
+              <div className="two">
+                <div className="one"></div>
+                <BiChevronDown className="big" />
+              </div>
+            </div>
           </div>
-          <div className="two">
-            <div className="one"></div>
-            <BiChevronDown className="big" />
+        </>
+      ) : (
+        <div className="container">
+          <div className="left">
+            <p className="logo">Logo</p>
+          </div>
+          <div className="middle">
+            <Link to="/" className={active === "/" ? "active" : ""}>
+              Home
+            </Link>
+            <Link
+              to="/explore"
+              className={active === "/explore" ? "active" : ""}
+            >
+              Explore
+            </Link>
+            <Link to="/about" className={active === "/about" ? "active" : ""}>
+              About
+            </Link>
+            <Link
+              to="/contact"
+              className={active === "/contact" ? "active" : ""}
+            >
+              Contact
+            </Link>
+          </div>
+          <div className="right">
+            <Link to="/login" className={active === "/login" ? "active" : ""}>
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className={active === "/signup" ? "active button" : "button"}
+            >
+              Signup
+            </Link>
           </div>
         </div>
-      </div>
+      )}
     </Container>
   );
 };
@@ -74,6 +118,74 @@ const Nav = () => {
 const Container = styled.div`
   width: 100%;
   height: auto;
+
+  .container {
+    width: 100%;
+    height: 70px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+
+    .left {
+      width: 20%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      p.logo {
+        font-size: 1.2em;
+        font-weight: 700;
+      }
+    }
+
+    .middle {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      a {
+        text-decoration: none;
+        margin: 0 25px;
+        color: var(--black);
+      }
+
+      .active {
+        color: var(--bright);
+      }
+    }
+
+    .right {
+      width: 20%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+
+      a {
+        text-decoration: none;
+        margin: 0 0 0 30px;
+        color: var(--black);
+      }
+
+      .active {
+        color: var(--bright);
+      }
+
+      .button {
+        padding: 7px 30px;
+        border-radius: 5px;
+        color: var(--white);
+        background: var(--bright);
+      }
+    }
+  }
 
   .icon {
     font-size: 1.1em;
