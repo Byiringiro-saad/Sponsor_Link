@@ -65,6 +65,9 @@ function App() {
         <Route path="/listings/saved" element={<SavedListings />} />
         <Route path="/listings/reported" element={<ReportedListings />} />
         <Route path="/listings/searched" element={<SearchedListings />} />
+
+        {/* plans */}
+        <Route path="/plans" element={<Pricing />} />
       </Routes>
       <Footer />
     </Router>
