@@ -16,7 +16,7 @@ const Nav = () => {
 
   //local data
   const [active, setActive] = React.useState("");
-  const [authenticated, setAuthenticated] = React.useState(false);
+  const [authenticated, setAuthenticated] = React.useState(true);
 
   const goToNotifications = () => {
     navigate("/notifications");

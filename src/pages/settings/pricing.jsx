@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import styled from "styled-components";
 
 //icons
@@ -6,83 +6,95 @@ import { SiMastercard } from "react-icons/si";
 import { GrFormAdd, GrPaypal } from "react-icons/gr";
 
 //components
+import Checkout from "../../components/pricing/checkout";
 import SettingsSideBar from "../../components/sidebars/settings";
 
 const Pricing = () => {
+  const [showCheckout, setShowCheckout] = useState(false);
+
+  const handleCheckout = () => {
+    setShowCheckout(!showCheckout);
+  };
+
   return (
-    <Container>
-      <div className="sidebar">
-        <SettingsSideBar />
-      </div>
-      <div className="container">
-        <p className="title">Payment Details</p>
-        <div className="methods">
-          <div className="header">
-            <p className="head">Methods</p>
-            <div className="add">
-              <GrFormAdd className="icon" />
-              <p>Add</p>
+    <Fragment>
+      {showCheckout && <Checkout close={handleCheckout} title="Premium Plan" />}
+      <Container>
+        <div className="sidebar">
+          <SettingsSideBar />
+        </div>
+        <div className="container">
+          <p className="title">Payment Details</p>
+          <div className="methods">
+            <div className="header">
+              <p className="head">Methods</p>
+              <div className="add">
+                <GrFormAdd className="icon" />
+                <p>Add</p>
+              </div>
+            </div>
+            <div className="content">
+              <div className="method">
+                <GrPaypal className="icon paypal" />
+                <p>Paypal</p>
+              </div>
+              <div className="method">
+                <SiMastercard className="icon mastercard" />
+                <p>Master card</p>
+              </div>
             </div>
           </div>
-          <div className="content">
-            <div className="method">
-              <GrPaypal className="icon paypal" />
-              <p>Paypal</p>
+          <div className="plans">
+            <div className="plan default">
+              <div className="header">
+                <p className="title">Basic Package</p>
+                <p className="price">Free</p>
+              </div>
+              <div className="about">
+                <p className="head">Plan includes:</p>
+                <ul>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                </ul>
+              </div>
+              <div className="button">Default</div>
             </div>
-            <div className="method">
-              <SiMastercard className="icon mastercard" />
-              <p>Master card</p>
+            <div className="plan">
+              <div className="header">
+                <p className="title">Premium Package</p>
+                <p className="price">$759</p>
+              </div>
+              <div className="about">
+                <p className="head">Plan includes:</p>
+                <ul>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                  <li>Byiringirosaad|@gmail.com</li>
+                </ul>
+              </div>
+              <div className="button" onClick={handleCheckout}>
+                Purchase
+              </div>
             </div>
           </div>
         </div>
-        <div className="plans">
-          <div className="plan default">
-            <div className="header">
-              <p className="title">Basic Package</p>
-              <p className="price">Free</p>
-            </div>
-            <div className="about">
-              <p className="head">Plan includes:</p>
-              <ul>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-              </ul>
-            </div>
-            <div className="button">Default</div>
-          </div>
-          <div className="plan">
-            <div className="header">
-              <p className="title">Premium Package</p>
-              <p className="price">$759</p>
-            </div>
-            <div className="about">
-              <p className="head">Plan includes:</p>
-              <ul>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-                <li>Byiringirosaad|@gmail.com</li>
-              </ul>
-            </div>
-            <div className="button">Purchase</div>
-          </div>
-        </div>
-      </div>
-    </Container>
+      </Container>
+    </Fragment>
   );
 };
 
